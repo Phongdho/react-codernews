@@ -8,7 +8,7 @@ import {
     Nav,
 } from 'react-bootstrap';
 
-const SearchBox = ({ setQuery}) => {
+const SearchBox = ({ setQuery }) => {
     const [searchInput, setSearchInput] = useState("Your input here");
     const handleInput = (input) => {
         input.preventDefault();
@@ -18,7 +18,7 @@ const SearchBox = ({ setQuery}) => {
     const handleSubmit = () => {
         setQuery(searchInput);
     };
-    
+
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>

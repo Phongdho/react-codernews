@@ -4,12 +4,13 @@ import React, { useState, useEffect } from "react";
 import SearchBox from './Components/SearchBox';
 import SideMenu from './Components/SideMenu';
 import MainPage from './Components/MainPage';
+import PaginationNews from './Components/PaginationNews';
 
 const myKey = process.env.REACT_APP_API_KEY;
 
 const App = () => {
   const [query, setQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState();
   const [data, setData] = useState([]);
   const [category, setCategory] = useState("business");
 
@@ -17,17 +18,18 @@ const App = () => {
   const getData = async () => {
     let baseUrl = "https://newsapi.org/v2";
     let queryPath = `/everything?q=${query}`;
-    let categoryPath = `/top-headlines?country=us&category=${category}`;
-    let pagePath = `/everything?page=${currentPage}`;
+    let path = "/top-headlines?country=us";
+    let categoryPath = `&category=${category}`;
+    let pagePath = `&page=${currentPage}`;
     let keyPath = `&apiKey=${myKey}`;
-    let url = baseUrl + categoryPath + keyPath;
-    console.log(url);
+    let url = baseUrl + path + pagePath + keyPath;
+    // console.log(url);
     if (query) {
       url = baseUrl + queryPath + keyPath;
     } else if (category) {
-      url = baseUrl + categoryPath + keyPath;
+      url = baseUrl + path + categoryPath + keyPath;
     } else if (currentPage) {
-      url = baseUrl + pagePath + keyPath;
+      url = baseUrl + path + pagePath + keyPath;
     }
 
     try {
@@ -39,7 +41,7 @@ const App = () => {
     }
   };
   getData();
-}, [query, category]);
+}, [currentPage, query, category]);
 
 
   return (
@@ -49,7 +51,9 @@ const App = () => {
       <div className="row">
         <div className="col-3">
             <SideMenu setCategory={setCategory} />
-          </div>
+            <PaginationNews setCurrentPage={setCurrentPage}/>
+        </div>
+
           <div className="col-9">
             <MainPage data={data} category={category} />
           </div>
