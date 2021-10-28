@@ -20,3 +20,18 @@ const SideMenu = ({setCategory}) => {
 }
 
 export default SideMenu;
+
+/** const SideMenu ({setCategory}) => {
+ * 
+ * const categoryArr=["business", "entertainment", "general", "health", "science", "sports", "technology"];
+ * 
+ * const handleCategory = (e) => {
+ * setCategory(e.target.value)};
+ * 
+ * return (
+ * <div className="" >
+ * {categoryArr.map((element) => {
+ * <button key={element} value={category} onClick={handleCategory}>{element}</button>})}
+ * )
+ * 
+ */

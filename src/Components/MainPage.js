@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Card } from "react-bootstrap";
-import { Col, Row } from "react-bootstrap";
-import SideMenu from './SideMenu';
 
 const NewsForm = ({articleData}) => {
     return (
+      // <div>
+      //   <PaginationNews />
         <Card className="text-center" style={{marginTop: "1rem"}}>
         <Card.Header style={{fontSize: "20px", fontWeight:"bold"}}>{articleData.title}</Card.Header>
         <Card.Body>
@@ -16,10 +16,11 @@ const NewsForm = ({articleData}) => {
           <Button variant="primary"><a href={articleData.url} style={{color:"white", textDecoration:"none"}}>{articleData.source.name}</a></Button>
         </Card.Body>
       </Card>
+      // </div>
     );
 };
 
-const MainPage = ({ data, category }) => {
+const MainPage = ({ data, category}) => {
     let articles = data.articles;
     return (
         <div className="container">
